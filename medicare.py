@@ -14,6 +14,7 @@ import textblob as tb
 import pickle as pkl
 import hydralit_components as hc
 import requests
+nltk.download("vader_lexicon")
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 st.set_page_config(page_title='MediCare', layout="wide",initial_sidebar_state='collapsed')
 #disease=st.sidebar.selectbox(options=['Home', 'Pneumonia', 'Diabetes', 'Skin Diseases', 'Heart Stroke', 'Plant Diseases'], label='Choose a disease from the following')
