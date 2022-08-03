@@ -9,6 +9,7 @@ from tensorflow.keras.utils import img_to_array, load_img
 from keras.applications.vgg19 import VGG19, preprocess_input, decode_predictions
 import numpy as np
 import io
+import nltk
 import pandas as pd
 import textblob as tb
 import pickle as pkl
