@@ -557,8 +557,9 @@ if disease=='Pneumonia':
                     st.write(' ')
     else:
         st.subheader('Sample image')
-        example_img=load_img(path='https://github.com/Utkarshhh20/medicare/blob/master/person1946_bacteria_4874.jpeg')
-        st.image(example_img)
+        st.image(
+            "https://github.com/Utkarshhh20/medicare/blob/master/person1946_bacteria_4874.jpeg?raw=true",
+        )
 
 elif disease=='Diabetes':
     input,blank,images=st.columns([1,0.1,1])
