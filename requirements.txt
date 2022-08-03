@@ -6,4 +6,4 @@ pandas
 numpy
 requests
 textblob
-hydralit_components
+hydralit
