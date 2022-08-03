@@ -557,8 +557,7 @@ if disease=='Pneumonia':
                     st.write(' ')
     else:
         st.subheader('Sample image')
-        example=r'C:\Users\Utki\Desktop\code\internship\pneumonia\chest_xray\chest_xray\test\PNEUMONIA\person1946_bacteria_4874.jpeg'
-        example_img=load_img(path=example)
+        example_img=load_img(path='https://github.com/Utkarshhh20/medicare/blob/master/person1946_bacteria_4874.jpeg')
         st.image(example_img)
 
 elif disease=='Diabetes':
