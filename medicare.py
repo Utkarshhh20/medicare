@@ -635,8 +635,6 @@ elif disease=='Heart Stroke':
     loaded_model = pkl.load(open(filename, 'rb'))
     st.subheader('Please fill in the following details accurately to get an estimation of your current condition')
     ref={0:'You seem to be in the safe zone', 1:'You have a chance of getting a stroke'}
-    filename = 'C:\\Users\\Utki\\Desktop\\code\\internship\\heart.pkl'
-    loaded_model = pkl.load(open(filename, 'rb'))
     gender=st.selectbox(label='Please select one of the genders below: ', options=['Male', 'Female'])
     age=st.number_input('Please enter your age: ', step=1, value=32)
     hypertension=st.selectbox('Do you have hypertension: ', options=['Yes', 'No'])
