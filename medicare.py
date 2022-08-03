@@ -489,7 +489,7 @@ if disease=='Pneumonia':
                 predict=prediction(io.BytesIO(image_data))
             with blank2:
                 st.write(' ')
-            if predict=='Pneumonia':
+            if predict=='You may be prone to Pneumonia. Kindly see a doctor at the earliest!':
                 blank1, text, blank2=st.columns([0.45,5,0.8])
                 with blank1:
                     st.write(' ')
@@ -566,7 +566,7 @@ elif disease=='Diabetes':
     with input:
         st.subheader('Please fill in the following details accurately to get an estimation of your current condition')
         ref={0:'You seem to be in the safe zone. Keep it up!', 1:'You may be prone to diabetes. Kindly see a doctor at the earliest!'}
-        filename = 'C:\\Users\\Utki\\Desktop\\code\\internship\\diabetes.pkl'
+        filename = 'diabetes.pkl'
         loaded_model = pkl.load(open(filename, 'rb'))
         age=st.number_input('Please enter your age: ', step=1, value=32)
         st.write(' ')
@@ -628,10 +628,10 @@ elif disease=='Skin Diseases':
             img_input=st.image(load_image(image_inp),width=250)
             image_data = image_inp.getvalue()
             img_input = Image.open(io.BytesIO(image_data))
-            model = keras.models.load_model('C:\\Users\\Utki\\Desktop\\code\\internship\\skin.h5')
+            model = keras.models.load_model('skin.h5')
             prediction(io.BytesIO(image_data))
 elif disease=='Heart Stroke':
-    filename = 'C:\\Users\\Utki\\Desktop\\code\\internship\\heart.pkl'
+    filename = 'heart.pkl'
     loaded_model = pkl.load(open(filename, 'rb'))
     st.subheader('Please fill in the following details accurately to get an estimation of your current condition')
     ref={0:'You seem to be in the safe zone', 1:'You have a chance of getting a stroke'}
@@ -754,7 +754,7 @@ elif disease=='Plant Diseases':
             image_data = image_inp.getvalue()
             #st.image(image_data)
             img_input = Image.open(io.BytesIO(image_data))
-            model = keras.models.load_model('C:\\Users\\Utki\\Desktop\\hackathon\\sciencious\\plantsmodel.h5')
+            model = keras.models.load_model('plantsmodel.h5')
             prediction(img_input)
 elif disease=='News':
     vader = SentimentIntensityAnalyzer()
