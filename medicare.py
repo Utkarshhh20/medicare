@@ -485,7 +485,7 @@ if disease=='Pneumonia':
                 img_input=st.image(load_image(image_inp),width=250)
                 image_data = image_inp.getvalue()
                 img_input = Image.open(io.BytesIO(image_data))
-                model = keras.models.load_model('C:\\Users\\Utki\\Desktop\\code\\internship\\pneumonia.h5')
+                model = keras.models.load_model('pneumonia.h5')
                 predict=prediction(io.BytesIO(image_data))
             with blank2:
                 st.write(' ')
