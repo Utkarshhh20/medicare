@@ -460,6 +460,8 @@ if disease=='Home':
     </body>
     '''
     st.markdown(cards, unsafe_allow_html=True) 
+st.write(' ')
+st.write(' ')
 if disease=='Pneumonia':
     ref={0:'You seem to be in the safe zone. Keep it up!', 1:'You may be prone to Pneumonia. Kindly see a doctor at the earliest!'}
     def prediction(image):
