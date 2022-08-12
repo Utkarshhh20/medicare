@@ -566,8 +566,8 @@ if disease=='Pneumonia':
         )
 
 elif disease=='Diabetes':
-    input,blank,images=st.columns([1,0.1,1])
-    with input:
+    inp,blank,images=st.columns([1,0.1,1])
+    with inp:
         st.subheader('Please fill in the following details accurately to get an estimation of your current condition')
         ref={0:'You seem to be in the safe zone. Keep it up!', 1:'You may be prone to diabetes. Kindly see a doctor at the earliest!'}
         filename = 'diabetes.pkl'
@@ -640,21 +640,42 @@ elif disease=='Skin Diseases':
             "https://github.com/Utkarshhh20/medicare/blob/master/ISIC_0029306.jpg?raw=true",
         )
 elif disease=='Heart Stroke':
-    filename = 'heart.pkl'
-    loaded_model = pkl.load(open(filename, 'rb'))
-    st.subheader('Please fill in the following details accurately to get an estimation of your current condition')
-    ref={0:'You seem to be in the safe zone', 1:'You have a chance of getting a stroke'}
-    gender=st.selectbox(label='Please select one of the genders below: ', options=['Male', 'Female'])
-    age=st.number_input('Please enter your age: ', step=1, value=32)
-    hypertension=st.selectbox('Do you have hypertension: ', options=['Yes', 'No'])
-    heartdisease=st.selectbox('Do you have a heart disease: ', options=['Yes', 'No'])
-    married=st.selectbox('Are you or were you married: ', options=['Yes', 'No'])
-    work=st.selectbox('Please select your work type: ', options=[ "Child", "Govtjob", "Never worked", "Private", "Self-employed"])
-    residence=st.selectbox('Residence area: ', options=['Rural', 'Urban'])
-    bmi=st.number_input('Body mass index (weight in kg/(height in m)^2): ', step=0.1, value=23.3)
-    glucose=st.number_input('Body mass index (weight in kg/(height in m)^2): ', step=0.1, value=174.1)
-    smoking=st.selectbox('Smoking status: ', options=["formerly smoked", "never smoked", "smokes" , "Unknown"])
-    calculate=st.button('Calculate')
+    inp,blank,images=st.columns([1,0.1,1])
+    with inp:
+        filename = 'heart.pkl'
+        loaded_model = pkl.load(open(filename, 'rb'))
+        st.subheader('Please fill in the following details accurately to get an estimation of your current condition')
+        st.write(' ')
+        ref={0:'You seem to be in the safe zone', 1:'You have a chance of getting a stroke'}
+        gender=st.selectbox(label='Please select one of the genders below: ', options=['Male', 'Female'])
+        st.write(' ')
+        age=st.number_input('Please enter your age: ', step=1, value=32)
+        st.write(' ')
+        hypertension=st.selectbox('Do you have hypertension: ', options=['Yes', 'No'])
+        st.write(' ')
+        heartdisease=st.selectbox('Do you have a heart disease: ', options=['Yes', 'No'])
+        st.write(' ')
+        married=st.selectbox('Are you or were you married: ', options=['Yes', 'No'])
+        st.write(' ')
+        work=st.selectbox('Please select your work type: ', options=[ "Child", "Govtjob", "Never worked", "Private", "Self-employed"])
+        st.write(' ')
+        residence=st.selectbox('Residence area: ', options=['Rural', 'Urban'])
+        st.write(' ')
+        bmi=st.number_input('Body mass index (weight in kg/(height in m)^2): ', step=0.1, value=23.3)
+        st.write(' ')
+        glucose=st.number_input('Body mass index (weight in kg/(height in m)^2): ', step=0.1, value=174.1)
+        st.write(' ')
+        smoking=st.selectbox('Smoking status: ', options=["formerly smoked", "never smoked", "smokes" , "Unknown"])
+        st.write(' ')
+        calculate=st.button('Calculate')
+    with blank:
+        st.write(' ')
+    with images:
+        st.header('Dataset insights')
+        st.image('https://github.com/Utkarshhh20/medicare/blob/master/scatterplot_heart.png?raw=true') 
+        st.write(' ')           
+        st.image('https://github.com/Utkarshhh20/medicare/blob/master/heatmap_heart.png?raw=true')
+        st.write(' ')
     if calculate==True:
         if gender=='Male':
             gender=1
