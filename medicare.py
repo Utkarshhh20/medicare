@@ -637,7 +637,7 @@ elif disease=='Skin Diseases':
     else:
         st.subheader('Sample image')
         st.image(
-            "https://github.com/Utkarshhh20/medicare/blob/master/ISIC_0029036.jpeg?raw=true",
+            "https://github.com/Utkarshhh20/medicare/blob/master/ISIC_0029306.jpg?raw=true",
         )
 elif disease=='Heart Stroke':
     filename = 'heart.pkl'
@@ -763,6 +763,11 @@ elif disease=='Plant Diseases':
             img_input = Image.open(io.BytesIO(image_data))
             model = keras.models.load_model('plantsmodel.h5')
             prediction(img_input)
+    else:
+        st.subheader('Sample image')
+        st.image(
+            "https://github.com/Utkarshhh20/medicare/blob/master/PotatoEarlyBlight3.JPG?raw=true",
+        )
 elif disease=='News':
     vader = SentimentIntensityAnalyzer()
     blank1, head, checkbox, blank2=st.columns([0.1,2,0.5,0.3])
