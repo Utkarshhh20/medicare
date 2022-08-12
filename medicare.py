@@ -634,6 +634,11 @@ elif disease=='Skin Diseases':
             img_input = Image.open(io.BytesIO(image_data))
             model = keras.models.load_model('skin.h5')
             prediction(io.BytesIO(image_data))
+    else:
+        st.subheader('Sample image')
+        st.image(
+            "https://github.com/Utkarshhh20/medicare/blob/master/ISIC_0029036.jpeg?raw=true",
+        )
 elif disease=='Heart Stroke':
     filename = 'heart.pkl'
     loaded_model = pkl.load(open(filename, 'rb'))
