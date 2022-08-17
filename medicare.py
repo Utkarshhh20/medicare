@@ -921,11 +921,11 @@ elif disease=='Plant Diseases':
             img_input = Image.open(io.BytesIO(image_data))
             model = keras.models.load_model('plantsmodel.h5')
             op=prediction(img_input)
-            op=op.split()
+            op=op.split(' ')
             for i in op:
                 if i=='healthy':
                     op='healthy'
-            if op=='':
+            if op!='healthy':
                 blank1, text, blank2=st.columns([0.45,5,0.8])
                 with blank1:
                     st.write(' ')
