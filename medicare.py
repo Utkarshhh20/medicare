@@ -566,11 +566,12 @@ if disease=='Pneumonia':
         )
 
 elif disease=='Diabetes':
-    inp,blank,images=st.columns([1,0.1,1])
-    with inp:
+    op=''
+    input,blank,images=st.columns([1,0.1,1])
+    with input:
         st.subheader('Please fill in the following details accurately to get an estimation of your current condition')
         ref={0:'You seem to be in the safe zone. Keep it up!', 1:'You may be prone to diabetes. Kindly see a doctor at the earliest!'}
-        filename = 'diabetes.pkl'
+        filename = 'C:\\Users\\Utki\\Desktop\\code\\internship\\diabetes.pkl'
         loaded_model = pkl.load(open(filename, 'rb'))
         age=st.number_input('Please enter your age: ', step=1, value=32)
         st.write(' ')
@@ -592,7 +593,49 @@ elif disease=='Diabetes':
         if calculate==True:
             prediction=loaded_model.predict([[pregnancy, glucose, pressure, thickness, insulin, bmi, pedigreefunc, age]])
             for i in prediction:
+                op=ref[i]
                 st.subheader(ref[i])
+    if op=='You may be prone to diabetes. Kindly see a doctor at the earliest!':
+                blank1, text, blank2=st.columns([0.45,5,0.8])
+                with blank1:
+                    st.write(' ')
+                with text:
+                    st.title('Symptoms of diabetes')
+                    st.write('Diabetes symptoms are caused by rising blood sugar.')
+                    st.write(' ')
+                    st.header('General symptoms')
+                    st.write("The general symptoms of diabetes include:")
+                    st.write(' ')
+                    st.write('''
+● increased hunger \n
+● increased thirst \n
+● weight loss \n
+● frequent urination \n
+● blurry vision \n
+● extreme fatigue \n
+● sores that dont heal''')
+                    st.header('The bottom line')
+                    st.write("Diabetes symptoms can be so mild that they're hard to spot at first. Learn which signs should prompt a trip to the doctor.")
+                    st.write(' ')
+                    st.header('Diabetes and exercise')
+                    st.write('Along with diet and treatment, exercise plays an essential role in diabetes management. This is true for all types of diabetes.')
+                    st.write('')
+                    st.write('Staying active helps your cells react to insulin more effectively and lower your blood sugar levels. Exercising regularly can also help you:')
+                    st.write('''
+● reach and maintain a healthy weight\n
+● reduce your risk of diabetes-related health complications\n
+● boost mood\n
+● get better sleep\n
+● improve memory''')
+                    st.write(' ')
+                    st.write('Diabetes-friendly exercises include:')
+                    st.write('''
+● walking\n
+● swimming\n
+● dancing\n
+● cycling''')
+                with blank2:
+                    st.write(' ')
     with blank:
         st.write(' ')
     with images:
