@@ -665,9 +665,10 @@ elif disease=='Skin Diseases':
         im=preprocess_input(i)
         img=np.expand_dims(im, axis=0)
         pred=np.argmax(model.predict(img))
-        print(f" the image belongs to { ref[pred] } ")
-        st.write(f" the image belongs to { ref[pred] } ")
-
+        print(f" You may be infected with { ref[pred] } ")
+        st.subheader(f" You may be infected with { ref[pred] } ")
+        op=ref[pred]
+        return op
     image_inp = st.file_uploader("Upload your image for identification", type=["png","jpg","jpeg"])
     if image_inp is not None:
             file_details = {"filename":image_inp.name, "filetype":image_inp.type, "filesize":image_inp.size}
@@ -676,7 +677,58 @@ elif disease=='Skin Diseases':
             image_data = image_inp.getvalue()
             img_input = Image.open(io.BytesIO(image_data))
             model = keras.models.load_model('skin.h5')
-            prediction(io.BytesIO(image_data))
+            op=prediction(io.BytesIO(image_data))
+            blank1, text, blank2=st.columns([0.45,5,0.8])
+            with blank1:
+                st.write(' ')
+            with text:
+                    st.title('Symptoms of skin disorders')
+                    st.write('Skin conditions have a wide range of symptoms. Symptoms on your skin that appear due to common problems aren’t always the result of a skin disorder. Such symptoms can include blisters from new shoes or chafing from tight pants. However, skin problems that have no obvious cause may indicate the presence of an actual skin condition that requires treatment.')
+                    st.write('')
+                    st.write('Skin irregularities that are typically symptoms of a skin disorder include:')
+                    st.write('')
+                    st.write('''
+● raised bumps that are red or white
+● a rash, which might be painful or itchy
+● scaly or rough skin
+● peeling skin
+● ulcers
+● open sores or lesions
+● dry, cracked skin
+● discolored patches of skin
+● fleshy bumps, warts, or other skin growths
+● changes in mole color or size
+● a loss of skin pigment
+● excessive flushing''')
+                    st.write('')
+                    st.title('Causes of skin disorders')
+                    st.write('Common known causes of skin disorders include:')
+                    st.write(' ') 
+                    st.write('''
+● bacteria trapped in skin pores and hair follicles\n
+● fungus, parasites, or microorganisms living on the skin\n
+● viruses\n
+● a weakened immune system\n
+● contact with allergens, irritants, or another person’s infected skin\n
+● genetic factors\n
+● illnesses affecting the thyroid, immune system, kidneys, and other body systems\n
+● Numerous health conditions and lifestyle factors can also lead to the development of certain skin disorders. Some skin conditions have no known cause.''')
+                    st.write(' ') 
+                    st.title('Preventing skin disorders')
+                    st.write('Certain skin disorders aren’t preventable, including genetic conditions and some skin problems due to other illnesses. However, it’s possible to prevent some skin disorders.')
+                    st.write(' ') 
+                    st.write('Follow these tips to prevent infectious skin disorders:')
+                    st.write('''
+● Wash your hands with soap and warm water frequently.\n
+● Avoid sharing eating utensils and drinking glasses with other people.\n
+● Avoid direct contact with the skin of other people who have an infection.\n
+● Clean things in public spaces, such as gym equipment, before using them.\n
+● Don’t share personal items, such as blankets, hairbrushes, or swimsuits.\n
+● Sleep for at least seven hours each night.\n
+● Drink plenty of water.\n
+● Avoid excessive physical or emotional stress.\n
+● Eat a nutritious diet.\n
+● Get vaccinated for infectious skin conditions, such as chickenpox.''')
     else:
         st.subheader('Sample image')
         st.image(
@@ -706,7 +758,7 @@ elif disease=='Heart Stroke':
         st.write(' ')
         bmi=st.number_input('Body mass index (weight in kg/(height in m)^2): ', step=0.1, value=23.3)
         st.write(' ')
-        glucose=st.number_input('Body mass index (weight in kg/(height in m)^2): ', step=0.1, value=174.1)
+        glucose=st.number_input('Average glucose level in blood: ', step=0.1, value=174.1)
         st.write(' ')
         smoking=st.selectbox('Smoking status: ', options=["formerly smoked", "never smoked", "smokes" , "Unknown"])
         st.write(' ')
@@ -760,46 +812,86 @@ elif disease=='Heart Stroke':
             smoking=0
         prediction=loaded_model.predict([[gender,	age,	hypertension,	heartdisease,	married,	work,	residence,	glucose,	bmi,	smoking]])
         for i in prediction:
+            op=i
             st.write(ref[i])
+        if op=='You have a chance of getting a stroke!':
+                blank1, text, blank2=st.columns([0.45,5,0.8])
+                with blank1:
+                    st.write(' ')
+                with text:
+                    st.title('Stroke symptoms')
+                    st.write('The loss of blood flow to the brain damages tissues within the brain. Symptoms of a stroke show up in the body parts controlled by the damaged areas of the brain.')
+                    st.write(' ')
+                    st.header('The sooner a person having a stroke gets care, the better their outcome is likely to be. For this reason, it’s helpful to know the signs of a stroke so you can act quickly. Stroke symptoms can include:')
+                    st.write("The general symptoms of diabetes include:")
+                    st.write(' ')
+                    st.write('''
+● paralysis\n
+● numbness or weakness in the arm, face, and leg, especially on one side of the body\n
+● trouble speaking or understanding others\n
+● slurred speech\n
+● confusion, disorientation, or lack of responsiveness\n
+● sudden behavioral changes, especially increased agitation\n
+● vision problems, such as trouble seeing in one or both eyes with vision blackened or blurred, or double vision\n
+● trouble walking\n
+● loss of balance or coordination\n
+● dizziness\n
+● severe, sudden headache with an unknown cause\n
+● seizures\n
+● nausea or vomiting''')
+                    st.header('How to prevent a stroke')
+                    st.write("Lifestyle changes can’t prevent all strokes. But many of these changes can make a radical difference when it comes to lowering your risk of stroke.")
+                    st.write(' ')
+                    st.header('These changes include the following:')
+                    st.write('Quit smoking. If you smoke, quitting now will lower your risk of stroke. You can reach out to your doctor to create a quit plan.')
+                    st.write('')
+                    st.write('Limit alcohol use. Heavy alcohol consumption can raise your blood pressure, which in turn raises the risk of stroke. If reducing your intake is difficult, reach out to your doctor for help.')
+                    st.write('''Keep a moderate weight. Overweight and obesity increases the risk of stroke. To help manage your weight, eat a balanced diet and stay physically active more often than not. Both steps can also reduce blood pressure and cholesterol levels.''')
+                    st.write(' ')
+                    st.write('Diabetes-friendly exercises include:')
+                    st.write('''Get regular checkups. Talk with your doctor about how often to get a checkup for blood pressure, cholesterol, and any conditions you may have. They can also support you in making these lifestyle changes and offer guidance.''')
+                with blank2:
+                    st.write(' ')
 elif disease=='Plant Diseases':
-    ref= {"0":"Apple___Apple_scab",
-    "1":"Apple___Black_rot",
-    "2":"Apple___Cedar_apple_rust",
-    "3":"Apple___healthy",
-    "4":"Blueberry___healthy",
-    "5":"Cherry_(including_sour)___Powdery_mildew",
-    "6":"Cherry_(including_sour)___healthy",
-    "7":"Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot",
-    "8":"Corn_(maize)___Common_rust_",
-    "9":"Corn_(maize)___Northern_Leaf_Blight",
-    "10":"Corn_(maize)___healthy",
-    "11":"Grape___Black_rot",
-    "12":"Grape___Esca_(Black_Measles)",
-    "13":"Grape___Leaf_blight_(Isariopsis_Leaf_Spot)",
-    "14":"Grape___healthy",
-    "15":"Orange___Haunglongbing_(Citrus_greening)",
-    "16":"Peach___Bacterial_spot",
-    "17":"Peach___healthy",
-    "18":"Pepper,_bell___Bacterial_spot",
-    "19":"Pepper,_bell___healthy",
-    "20":"Potato___Early_blight",
-    "21":"Potato___Late_blight",
-    "22":"Potato___healthy",
-    "23":"Raspberry___healthy",
-    "24":"Soybean___healthy",
-    "25":"Squash___Powdery_mildew",
-    "26":"Strawberry___Leaf_scorch",
-    "27":"Strawberry___healthy",
-    "28":"Tomato___Bacterial_spot",
-    "29":"Tomato___Early_blight",
-    "30":"Tomato___Late_blight",
-    "31":"Tomato___Leaf_Mold",
-    "32":"Tomato___Septoria_leaf_spot",
-    "33":"Tomato___Spider_mites Two-spotted_spider_mite",
-    "34":"Tomato___Target_Spot",
-    "35":"Tomato___Tomato_Yellow_Leaf_Curl_Virus",
-    "36":"Tomato___Tomato_mosaic_virus",
-    "37":"Tomato___healthy"}
+    op=''
+    ref= {"0":"Apple scab",
+    "1":"Apple Black rot",
+    "2":"Apple Cedar rust",
+    "3":"Apple healthy",
+    "4":"Blueberry healthy",
+    "5":"Cherry (including_sour) Powdery_mildew",
+    "6":"Cherry (including_sour) healthy",
+    "7":"Corn(maize) Cercospora_leaf spot Gray",
+    "8":"Corn_(maize) Common rust",
+    "9":"Corn_(maize) Northern Leaf Blight",
+    "10":"Corn (maize) healthy",
+    "11":"Grape Black rot",
+    "12":"Grape Esca (Black Measles)",
+    "13":"Grape Leaf blight (Isariopsis Leaf Spot)",
+    "14":"Grape healthy",
+    "15":"Orange Haunglongbing (Citrus greening)",
+    "16":"Peach Bacterial spot",
+    "17":"Peach healthy",
+    "18":"Bell Pepper Bacterial spot",
+    "19":"Bell Pepper healthy",
+    "20":"Potato Early blight",
+    "21":"Potato Late blight",
+    "22":"Potato healthy",
+    "23":"Raspberry healthy",
+    "24":"Soybean healthy",
+    "25":"Squash Powdery mildew",
+    "26":"Strawberry Leaf scorch",
+    "27":"Strawberry healthy",
+    "28":"Tomato Bacterial spot",
+    "29":"Tomato Early blight",
+    "30":"Tomato Late blight",
+    "31":"Tomato Leaf Mold",
+    "32":"Tomato Septoria leaf spot",
+    "33":"Tomato Spider mites, Two-spotted spider mite",
+    "34":"Tomato Target Spot",
+    "35":"Tomato Yellow Leaf Curl Virus",
+    "36":"Tomato mosaic virus",
+    "37":"Tomato healthy"}
 
     def prediction(img_input):
         #img=load_img(path, target_size=(256,256))
@@ -810,8 +902,10 @@ elif disease=='Plant Diseases':
         img=np.expand_dims(im, axis=0)
         pred=np.argmax(model.predict(img))
         pred=str(pred)
-        print(f" The image belongs to { ref[pred] } ")
-        st.write(f" The image belongs to { ref[pred] } ")
+        print(f" The image is most likely classified under { ref[pred] } ")
+        st.write(f" The image is most likely classified under { ref[pred] } ")
+        op=ref[pred]
+        return op
 
     def load_image(image_file):
         img = Image.open(image_file)
@@ -826,7 +920,49 @@ elif disease=='Plant Diseases':
             #st.image(image_data)
             img_input = Image.open(io.BytesIO(image_data))
             model = keras.models.load_model('plantsmodel.h5')
-            prediction(img_input)
+            op=prediction(img_input)
+            op=op.split()
+            for i in op:
+                if i=='healthy':
+                    op='healthy'
+            if op=='':
+                blank1, text, blank2=st.columns([0.45,5,0.8])
+                with blank1:
+                    st.write(' ')
+                with text:
+                    st.title('Signs and symptoms of plant disease: Is it fungal, viral or bacterial?')
+                    st.write('Most plant diseases – around 85 percent – are caused by fungal or fungal-like organisms. However, other serious diseases of food and feed crops are caused by viral and bacterial organisms. Certain nematodes also cause plant disease. Some plant diseases are classified as “abiotic,” or diseases that are non-infectious and include damage from air pollution, nutritional deficiencies or toxicities, and grow under less than optimal conditions. For now, we’ll look at diseases caused by the three main pathogenic microbes: fungus, bacteria and virus. If plant disease is suspected, careful attention to plant appearance can give a good clue regarding the type of pathogen involved.')
+                    st.write('')
+                    st.write('A sign of plant disease is physical evidence of the pathogen. For example, fungal fruiting bodies are a sign of disease. When you look at powdery mildew on a lilac leaf, you’re actually looking at the parasitic fungal disease organism itself (Microsphaera alni). Bacterial canker of stone fruits causes gummosis, a bacterial exudate emerging from the cankers. The thick, liquid exudate is primarily composed of bacteria and is a sign of the disease, although the canker itself is composed of plant tissue and is a symptom.')
+                    st.write('')
+                    st.write('A symptom of plant disease is a visible effect of disease on the plant. Symptoms may include a detectable change in color, shape or function of the plant as it responds to the pathogen. Leaf wilting is a typical symptom of verticilium wilt, caused by the fungal plant pathogens Verticillium albo-atrum and V. dahliae. Common bacterial blight symptoms include brown, necrotic lesions surrounded by a bright yellow halo at the leaf margin or interior of the leaf on bean plants. You are not actually seeing the disease pathogen, but rather a symptom that is being caused by the pathogen.')
+                    st.write('')
+                    st.subheader('Fungal disease signs:')
+                    st.write('''
+● Leaf rust (common leaf rust in corn)\n
+● Stem rust (wheat stem rust)\n
+● Sclerotinia (white mold)\n
+● Powdery mildew''')
+                    st.write(' ') 
+                    st.subheader('Fungal disease symptoms:')
+                    st.write('''
+● Birds-eye spot on berries (anthracnose)\n
+● Damping off of seedlings (phytophthora)\n
+● Leaf spot (septoria brown spot)\n
+● Chlorosis (yellowing of leaves)
+''')
+                    st.write(' ') 
+                    st.subheader('Viral disease signs:')
+                    st.write('None – the viruses themselves can’t be seen')
+                    st.write(' ') 
+                    st.subheader('Viral disease symptoms:')
+                    st.write('''
+● Mosaic leaf pattern\n
+● Crinkled leaves\n
+● Yellowed leaves\n
+● Plant stunting''')
+                with blank2:
+                    st.write(' ')
     else:
         st.subheader('Sample image')
         st.image(
