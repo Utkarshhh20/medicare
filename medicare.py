@@ -571,7 +571,7 @@ elif disease=='Diabetes':
     with input:
         st.subheader('Please fill in the following details accurately to get an estimation of your current condition')
         ref={0:'You seem to be in the safe zone. Keep it up!', 1:'You may be prone to diabetes. Kindly see a doctor at the earliest!'}
-        filename = 'C:\\Users\\Utki\\Desktop\\code\\internship\\diabetes.pkl'
+        filename = 'diabetes.pkl'
         loaded_model = pkl.load(open(filename, 'rb'))
         age=st.number_input('Please enter your age: ', step=1, value=32)
         st.write(' ')
