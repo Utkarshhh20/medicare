@@ -44,6 +44,7 @@ key='NavBar'
 )
 st.write(' ')
 st.write(' ')
+st.write(' ')
 if disease!='Home' and disease!='News':
     st.title(disease)
 
