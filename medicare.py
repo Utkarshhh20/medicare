@@ -42,7 +42,8 @@ sticky_mode='sticky', #jumpy or not-jumpy, but sticky or pinned
 use_animation=True,
 key='NavBar'
 )
-
+st.write(' ')
+st.write(' ')
 if disease!='Home' and disease!='News':
     st.title(disease)
 
