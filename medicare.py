@@ -33,7 +33,7 @@ menu_data = [
     {'icon': "fa fa-heartbeat", 'label':"Heart Stroke"},
     {'icon': "fa fa-leaf", 'label':"Plant Diseases"},
     {'icon': "fa fa-newspaper", 'label':"News"},
-    {'icon': "fa fa-comment-o", 'label':"Chatbot"},
+    {'icon': "fa fa-comment", 'label':"Chatbot"},
 ]
 #    {'icon': "bi bi-telephone", 'label':"Contact us"},
 over_theme = {'txc_inactive': "#D3D3D3",'menu_background':'#3948A5','txc_active':'white','option_active':'#3948A5'}
