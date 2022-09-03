@@ -17,6 +17,10 @@ import hydralit_components as hc
 import requests
 nltk.download("vader_lexicon")
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
+import json
+from chatterbot import ChatBot
+from chatterbot.trainers import ListTrainer
+from chatterbot.trainers import ChatterBotCorpusTrainer 
 st.set_page_config(page_title='MediCare', layout="wide",initial_sidebar_state='collapsed')
 #disease=st.sidebar.selectbox(options=['Home', 'Pneumonia', 'Diabetes', 'Skin Diseases', 'Heart Stroke', 'Plant Diseases'], label='Choose a disease from the following')
 
@@ -42,6 +46,10 @@ sticky_mode='sticky', #jumpy or not-jumpy, but sticky or pinned
 use_animation=True,
 key='NavBar'
 )
+def get_text():
+    input_text = st.text_input("You: ","So, what's in your mind")
+    return input_text 
+
 st.write(' ')
 st.write(' ')
 st.write(' ')
@@ -1040,3 +1048,46 @@ elif disease=='News':
                 # Iterate through the headlines and get the polarity scores using vader
     with blank2:
         st.write(' ')
+if disease=='Chatbot':
+    data = json.loads(open(r'data_tolokers.json','r').read())#change path accordingly
+    data2 = json.loads(open(r'sw.json','r').read())#change path accordingly
+
+    tra = []
+    for k, row in enumerate(data):
+        #print(k)
+        tra.append(row['dialog'][0]['text'])
+    for k, row in enumerate(data2):
+        #print(k)
+        tra.append(row['dialog'][0]['text'])
+
+
+
+    st.title("""
+    NLP Bot  
+    NLP Bot is an NLP conversational chatterbot. Initialize the bot by clicking the "Initialize bot" button. 
+    """)
+
+
+    bot = ChatBot(name = 'PyBot', read_only = False,preprocessors=['chatterbot.preprocessors.clean_whitespace','chatterbot.preprocessors.convert_to_ascii','chatterbot.preprocessors.unescape_html'], logic_adapters = ['chatterbot.logic.MathematicalEvaluation','chatterbot.logic.BestMatch'])
+    #corpus_trainer = ChatterBotCorpusTrainer(bot) 
+    #corpus_trainer.train('chatterbot.corpus.english') 
+    #return bot
+
+
+    ind = 1
+        #do something
+        #bot = ChatBot(name = 'PyBot', read_only = False,preprocessors=['chatterbot.preprocessors.clean_whitespace','chatterbot.preprocessors.convert_to_ascii','chatterbot.preprocessors.unescape_html'], logic_adapters = ['chatterbot.logic.MathematicalEvaluation','chatterbot.logic.BestMatch'])
+    corpus_trainer = ChatterBotCorpusTrainer(bot) 
+    corpus_trainer.train('chatterbot.corpos.english') 
+    trainer2 = ListTrainer(bot) 
+    trainer2.train(tra)
+    st.title("Your bot is ready to talk to you")
+    ind = ind +1
+
+    user_input = get_text()
+
+
+    if True:
+        st.text_area("Bot:", value=bot.get_response(user_input), height=200, max_chars=None, key=None)
+    else:
+        st.text_area("Bot:", value="Please start the bot by clicking sidebar button", height=200, max_chars=None, key=None)
