@@ -9,4 +9,8 @@ hydralit
 scikit-learn
 scipy
 nltk
-chatterbot
+ChatterBot==1.0.4
+chatterbot-corpus
+jsonlines
+SQLAlchemy
+sqlparse
