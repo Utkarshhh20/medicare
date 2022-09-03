@@ -9,3 +9,4 @@ hydralit
 scikit-learn
 scipy
 nltk
+chatterbot
