@@ -446,7 +446,7 @@ if disease=='Home':
     <div class="card4">
         <img src="https://cdn.myportfolio.com/fd40c2a8-1f6f-47d7-8997-48ba5415a69c/2508fc4e-9fb6-4a87-89a3-59f097f2e4e2_rw_600.jpg?h=1eb9e88194f7997fefc53636ce808a98" alt="Avatar" style="width:100%" class='heart_img'>
         <div class="container">
-            <h4><b>Stroke prediction Accuracy: 95.04%</b></h4>
+            <h4><b>Stroke Accuracy: 95.04%</b></h4>
         </div>
         <div class="w3-light-grey w3-round-xlarge" id='progress1'>
         <div class="w3-container w3-green w3-center w3-round-xlarge" style="width:95.04%">95.04%</div>
